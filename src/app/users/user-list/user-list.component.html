@@ -1,0 +1,53 @@
+<h1>User List
+    <button class="btn btn-success btn-circle pull-right" 
+            (click)="add()"     
+            title="Add Customer">
+        <i class="glyphicon glyphicon-plus"></i>
+    </button>
+</h1>
+<div class="container-fluid">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default" style="width:120%">
+            <div class="panel-heading">User information</div>
+            <table class="table table-striped" width="200% !important" [mfData]="data" #mf="mfDataTable"
+                   [mfRowsOnPage]="rowsOnPage">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Age</th>
+                        <th>Date Of Birth</th>
+                        <th>Location</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of mf.data; let i = index ">
+                        <th scope="row">{{i + 1}}</th>
+                        <td>{{user.first_name}} {{user.last_name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.mobile}}</td>
+                        <td>{{user.age}}</td>
+                        <td>{{user.date_of_birth  | date: 'dd MMM yyyy'}}</td>
+                        <td>{{user.location}}</td>
+                        <td> <button class="btn btn-circle square-40 mr-1 mb-1 btn-primary" [routerLink]="['../users/edit', user.id]" type="button">
+                                     <i class="fa fa-pencil-square-o" aria-hidden="true">Edit</i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="8">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+

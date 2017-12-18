@@ -1,0 +1,100 @@
+<div class="panel panel-default">
+    <div class="panel-heading panel-primary" >Add/Edit Page</div>
+    <div class="panel-body">
+        <form [formGroup]="form" novalidate>
+            <div class="form-group">
+                <label for="first_name">First Name <span>*</span></label>
+                <input class="form-control" [(ngModel)]="model.first_name" [formControl]="form.controls['first_name']">
+                <small  *ngIf="form.controls['first_name'].hasError('required') && form.controls['first_name'].touched" class="text-danger">
+                    You must include a first name.
+            </small>
+            <small  *ngIf="form.controls['first_name'].hasError('maxlength') && form.controls['first_name'].touched" class="text-danger">
+                Your first name cannot exceed 100 characters.
+        </small>
+    </div>
+    <div class="form-group">
+        <label for="last_name">Last Name <span class="all-module-mandatory-field">*</span></label>
+        <input class="form-control" [(ngModel)]="model.last_name" [formControl]="form.controls['last_name']">
+        <small  *ngIf="form.controls['last_name'].hasError('required') && form.controls['last_name'].touched" class="text-danger">
+            You must include a last name.
+    </small>
+    <small  *ngIf="form.controls['last_name'].hasError('maxlength') && form.controls['last_name'].touched" class="text-danger">
+        Your last name cannot exceed 100 characters.
+</small>
+</div>
+<div class="form-group">
+    <label for="email"> Email <span>*</span></label>
+    <input name="email" id='email' [(ngModel)]="model.email" [formControl]="form.controls['email']" class="form-control"  required>
+    <small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="text-danger">
+        You must include a email address.
+</small>
+<small *ngIf="(form.controls['email'].hasError('pattern')) && !(form.controls['email'].hasError('required')) && form.controls['email'].touched"
+    class="text-danger">
+    You must include a valid email address.
+</small>
+<small  *ngIf="form.controls['email'].hasError('maxlength') && !(form.controls['email'].hasError('pattern')) && !(form.controls['email'].hasError('required')) && form.controls['email'].touched"
+    class="text-danger">
+    Your email cannot exceed 100 characters.
+</small>
+<small 
+    *ngIf="form.controls['email'].errors && !form.controls['email'].hasError('maxlength') && !(form.controls['email'].hasError('pattern')) && !(form.controls['email'].hasError('required')) && form.controls['email'].touched"
+    class="text-danger">
+    You must include a valid email address.
+</small>
+</div>
+
+<div class="form-group">
+    <label for="mobile"> Mobile <span>*</span></label>
+    <input class="form-control"  [formControl]="form.controls['mobile']" [(ngModel)]="model.mobile">
+    <small  *ngIf="form.controls['mobile'].hasError('required') && form.controls['mobile'].touched" class="text-danger">
+        You must include a mobile.
+</small>
+<small  *ngIf="form.controls['mobile'].hasError('pattern') && !form.controls['mobile'].hasError('required') && form.controls['mobile'].touched" class="text-danger">
+    You must include a valid  mobile.
+</small>
+<small  *ngIf="form.controls['mobile'].hasError('minlength') && form.controls['mobile'].touched" class="text-danger">
+    Your mobile cannot be less than 10.
+</small>
+
+</div>
+
+<div class="form-group">
+    <label for="age">age <span>*</span></label>
+    <input class="form-control" [(ngModel)]="model.age" [formControl]="form.controls['age']" type="number">
+    <small  *ngIf="form.controls['age'].hasError('required') && form.controls['age'].touched" class="text-danger">
+        You must include a age.
+</small>
+<small  *ngIf="form.controls['age'].hasError('min') && form.controls['age'].touched" class="text-danger">
+    Your age cannot less than 0.
+</small>
+</div>
+<div class="form-group">
+    <label for="date_of_birth">Date of Birth <span>*</span></label>
+    <input class="form-control" [(ngModel)]="model.date_of_birth" [formControl]="form.controls['date_of_birth']" type="date">
+    <small  *ngIf="form.controls['date_of_birth'].hasError('required') && form.controls['date_of_birth'].touched" class="text-danger">
+        You must include a date_of_birth.
+</small>
+</div>
+
+<div class="form-group">
+    <label for="location">Location <span>*</span></label>
+    <input class="form-control" [(ngModel)]="model.location" [formControl]="form.controls['location']">
+    <small  *ngIf="form.controls['location'].hasError('required') && form.controls['location'].touched" class="text-danger">
+        You must include a location.
+</small>
+<small  *ngIf="form.controls['location'].hasError('maxlength') && form.controls['location'].touched" class="text-danger">
+    Your location cannot exceed 100 characters.
+</small>
+</div>
+
+<div class="pad-wrap">
+    <div>
+        <button *ngIf="!id" class="btn btn-lg btn-square btn-info" (click) ="createUser()" type="submit">Create</button>
+        <button *ngIf="id" class="btn btn-lg btn-square btn-info" (click) ="updateUser()" type="submit" [disabled]="!form.valid">Update</button>
+        <button class="btn btn-lg btn-square btn-danger" [routerLink]="['/users']">Cancel</button>
+
+    </div>
+</div>
+</form>
+</div>
+</div>
